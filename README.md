@@ -28,12 +28,6 @@ Start the server
 
 ## Run Locally approuter
 
-Clone the project
-
-```bash
-  git clone https://link-to-project
-```
-
 Go to the project directory
 
 ```bash
