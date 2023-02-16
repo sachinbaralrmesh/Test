@@ -9,4 +9,14 @@ service CatalogService {
     entity Customers as projection on my.Customers;
     entity ManualAddedErpIDs as projection on my.ManualAddedErpIDs;
     entity topicPublished as projection on my.Published;
+    type downloadReturn {
+        customerName: String;
+        FbaStatus:String;
+        erpId:Integer;
+        UserId:String;
+    };
+
+function downloadCustomer(input:String) returns downloadReturn;
+
+
 }

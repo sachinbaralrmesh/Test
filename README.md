@@ -8,7 +8,7 @@ Clone the project
   git clone https://link-to-project
 ```
 
-Go to the project directory
+Open new terminal and go to the project directory
 
 ```bash
   cd service
@@ -28,7 +28,7 @@ Start the server
 
 ## Run Locally approuter
 
-Go to the project directory
+Open new terminal and go to the project directory
 
 ```bash
   cd approuter
@@ -45,3 +45,7 @@ Start the server
 ```bash
   npm run start
 ```
+
+The approuter will be running in port mention in the terminal.
+
+In order to access the UI please check the xs-app.json for routing UI and API's endpoints

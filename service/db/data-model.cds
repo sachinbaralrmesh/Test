@@ -40,7 +40,7 @@ entity Fba{
 entity Customers {
   key ID : UUID;
   name : String(255);
-  userId: String(10);
+  customerId: String(10);
   erpId: Integer; 
   Topics_ID : String;
   fbaStatus: Association to one Fba on fbaStatus.erpId=erpId;
@@ -48,10 +48,9 @@ entity Customers {
 
 entity ManualAddedErpIDs {
   key ID : UUID;
-  userId: String;
+  customerId: String;
   erpId: Integer;
   manualErpId: Integer; 
-  Customers_ID: String;
   Topics_ID : String;
   fbaStatus: Association to one Fba on fbaStatus.erpId=manualErpId;
 }
@@ -76,3 +75,4 @@ entity TopicsRegions:cuid{
   Topics_ID: String;
   Regions_ID:String;
 }
+
