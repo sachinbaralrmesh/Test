@@ -9,9 +9,12 @@ entity Topics {
   name  : String;
   status : Status;
   aquicition: Boolean;
-  topicstags: Composition of many TopicsTags on topicstags.topics = $self;
-  topicsRegions: Composition of many TopicsRegions on topicsRegions.topics= $self;
-  topicPublished: Composition of many Published on topicPublished.topics= $self;
+  tags: Association to many  TopicsTags on tags.Topics_ID = ID;
+  regions: Association to many  TopicsRegions on regions.Topics_ID= ID;
+  topicPublished: Association to Published  on topicPublished.Topics_ID= ID;
+  customers: Association to many Customers on customers.Topics_ID=ID;
+  manualAddedErpIDs: Association to many ManualAddedErpIDs on manualAddedErpIDs.Topics_ID=ID;
+
 }
 
 
@@ -26,9 +29,36 @@ key ID :UUID;
 name: String;
 }
 
-entity Published: cuid{ 
+type FbaStatus: String enum{
+Signed;![Not Signed]
+}
+entity Fba{
+  key erpId: Integer;
+  status: FbaStatus;
+}
+
+entity Customers {
+  key ID : UUID;
+  name : String(255);
+  userId: String(10);
+  erpId: Integer; 
+  Topics_ID : String;
+  fbaStatus: Association to one Fba on fbaStatus.erpId=erpId;
+}
+
+entity ManualAddedErpIDs {
+  key ID : UUID;
+  userId: String;
+  erpId: Integer;
+  manualErpId: Integer; 
+  Customers_ID: String;
+  Topics_ID : String;
+  fbaStatus: Association to one Fba on fbaStatus.erpId=manualErpId;
+}
+
+entity Published:cuid { 
  paylod: String(5000);
- topics: Association to Topics;
+ Topics_ID: String;
 }
 /*
 payload={ 
@@ -38,11 +68,11 @@ payload={
 */
 
 entity TopicsTags:cuid{
-  topics: Association to Topics;
-  tags:Association to Tags;
+  Topics_ID: String;
+  Tags_ID: String;
 }
 
 entity TopicsRegions:cuid{
-  topics: Association to Topics;
-  regions:Association to Regions;
+  Topics_ID: String;
+  Regions_ID:String;
 }
